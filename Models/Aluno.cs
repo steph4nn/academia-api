@@ -10,15 +10,15 @@ namespace AcademiaAPI.Models
         public string? Cpf {get; set;}
         public string? Nome {get; set;}
         public DateTime DataVencimento {get;  set;}
-        public DateTime DataEgresso{get; set;}
+        public DateTime DataIngresso{get; set;}
 
         public Aluno()
         {            
         }
-        public Aluno(string cpf, string nome, DateTime dataVencimento, DateTime dataEgresso)
+        public Aluno(string cpf, string nome, DateTime dataVencimento, DateTime dataIngresso)
         {
             this.Cpf = cpf;
-            this.DataEgresso = dataEgresso;
+            this.DataIngresso = dataIngresso;
             this.DataVencimento = dataVencimento;
             this.Nome = nome;
         }

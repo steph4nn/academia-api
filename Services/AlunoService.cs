@@ -18,7 +18,7 @@ namespace AcademiaAPI.Services
         {
            var result =
             await _dbService.EditData(
-                "INSERT INTO public.aluno (cpf, data_vencimento, data_egresso, nome) VALUES (@cpf, @datavencimento, @dataegresso, @nome)",
+                "INSERT INTO public.aluno (cpf, data_vencimento, data_ingresso, nome) VALUES (@cpf, @datavencimento, @dataingresso, @nome)",
                 aluno);
         return true;
         }

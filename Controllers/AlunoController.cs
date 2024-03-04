@@ -10,12 +10,17 @@ using Microsoft.Extensions.Logging;
 
 namespace AcademiaAPI.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class AlunoController : Controller
     {
         private readonly IAlunoService _alunoService;
     
+
+    
+
+
     public AlunoController(IAlunoService employeeService)
     {
         _alunoService = employeeService;
@@ -25,6 +30,7 @@ namespace AcademiaAPI.Controllers
     public async Task<IActionResult> Get()
     {
         var result =  await _alunoService.GetAlunosList();
+
 
         return Ok(result);
     }
