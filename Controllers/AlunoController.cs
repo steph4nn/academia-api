@@ -35,10 +35,10 @@ namespace AcademiaAPI.Controllers
         return Ok(result);
     }
 
-    [HttpGet("{cpf}")]
-    public async Task<IActionResult> GetAluno(string cpf)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetAluno(int id)
     {
-        var result =  await _alunoService.GetAluno(cpf);
+        var result =  await _alunoService.GetAluno(id);
 
         return Ok(result);
     }
@@ -59,10 +59,10 @@ namespace AcademiaAPI.Controllers
         return Ok(result);
     }
 
-    [HttpDelete("{cpf}")]
-    public async Task<IActionResult> DeleteAluno(string cpf)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAluno(int id)
     {
-        var result =  await _alunoService.DeleteAluno(cpf);
+        var result =  await _alunoService.DeleteAluno(id);
 
         return Ok(result);
     }

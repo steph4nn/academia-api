@@ -23,9 +23,9 @@ namespace AcademiaAPI.Services
         return true;
         }
 
-        public async Task<bool> DeleteAluno(string cpf)
+        public async Task<bool> DeleteAluno(int id)
         {
-            var DeleteAluno = await _dbService.EditData("DELETE FROM public.aluno WHERE cpf=@cpf", new { cpf });
+            var DeleteAluno = await _dbService.EditData("DELETE FROM public.aluno WHERE id_aluno=@id", new { id });
             return true;
         }
 
@@ -35,9 +35,9 @@ namespace AcademiaAPI.Services
             var alunoList = await _dbService.GetAll<Aluno>("SELECT * FROM public.aluno", new { });
             return alunoList;
         }
-        public async Task<Aluno> GetAluno(string cpf)
+        public async Task<Aluno> GetAluno(int id)
         {
-            var alunoList = await _dbService.GetAsync<Aluno>("SELECT * FROM public.aluno where cpf=@cpf", new {cpf});
+            var alunoList = await _dbService.GetAsync<Aluno>("SELECT * FROM public.aluno where id_aluno=@id", new {id});
             return alunoList;
         }
 
@@ -45,7 +45,7 @@ namespace AcademiaAPI.Services
         {
             var updateAluno =
             await _dbService.EditData(
-                "Update public.aluno SET  data_vencimento=@datavencimento,  nome=@nome WHERE cpf=@cpf",
+                "Update public.aluno SET  data_vencimento=@datavencimento,  nome=@nome WHERE id_aluno=@id",
                 aluno);
         return aluno;
         }

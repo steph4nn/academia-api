@@ -10,8 +10,8 @@ namespace AcademiaAPI.Services
     {
         Task<bool>CreateAluno(Aluno aluno);
         Task<List<Aluno>> GetAlunosList();
-        Task<Aluno>GetAluno(string cpf);
+        Task<Aluno>GetAluno(int id);
         Task<Aluno> UpdateAluno(Aluno aluno);
-        Task <bool> DeleteAluno(string cpf);
+        Task <bool> DeleteAluno(int id);
     }
 }
