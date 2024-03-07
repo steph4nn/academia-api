@@ -21,9 +21,9 @@ namespace AcademiaAPI.Controllers
     
 
 
-    public AlunoController(IAlunoService employeeService)
+    public AlunoController(IAlunoService alunoService)
     {
-        _alunoService = employeeService;
+        _alunoService = alunoService;
     }
 
     [HttpGet]
