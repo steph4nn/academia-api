@@ -16,7 +16,7 @@ namespace AcademiaAPI.Services
 
         public async Task<bool> CreateAluno(Aluno aluno)
         {
-           var result =
+             var result =
             await _dbService.EditData(
                 "INSERT INTO public.aluno (cpf, data_vencimento, data_ingresso, nome) VALUES (@cpf, @datavencimento, @dataingresso, @nome)",
                 aluno);

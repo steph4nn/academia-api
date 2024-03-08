@@ -17,10 +17,10 @@ namespace AcademiaAPI.Models
         }
         public Aluno(string cpf, string nome, DateTime dataVencimento, DateTime dataIngresso)
         {
-            this.Cpf = cpf;
-            this.DataIngresso = dataIngresso;
-            this.DataVencimento = dataVencimento;
-            this.Nome = nome;
+            Cpf = cpf;
+            DataIngresso = dataIngresso;
+            DataVencimento = dataVencimento;
+            Nome = nome;
         }
     }
 }

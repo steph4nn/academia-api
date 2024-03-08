@@ -5,14 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using AcademiaAPI.Models;
 using AcademiaAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace AcademiaAPI.Controllers
 {
-
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
+    
     public class AlunoController : Controller
     {
         private readonly IAlunoService _alunoService;
