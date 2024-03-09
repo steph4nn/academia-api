@@ -46,7 +46,7 @@ namespace AcademiaAPI.Controllers
 
                 return Ok(token);
             }
-            return BadRequest();
+            return BadRequest("Errou dnv");
         }
 
     }
