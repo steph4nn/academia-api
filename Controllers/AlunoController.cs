@@ -18,9 +18,6 @@ namespace AcademiaAPI.Controllers
     public class AlunoController : Controller
     {
         private readonly IAlunoService _alunoService;
-    
-
-    
 
 
     public AlunoController(IAlunoService alunoService)

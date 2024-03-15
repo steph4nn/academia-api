@@ -19,11 +19,11 @@ namespace AcademiaAPI.Controllers
         private readonly IUsuarioService _usuarioService;
         private IConfiguration _config;
 
-    public LoginController([FromServices] IConfiguration config, [FromServices] IUsuarioService usuarioService)
-    {
-    _config = config;
-    _usuarioService = usuarioService;
-    }
+        public LoginController([FromServices] IConfiguration config, [FromServices] IUsuarioService usuarioService)
+        {
+            _config = config;
+            _usuarioService = usuarioService;
+        }
         
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Usuario usuario)
