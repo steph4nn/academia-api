@@ -72,6 +72,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<IDbService, DbService>();
 builder.Services.AddScoped<IAlunoService, AlunoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IPagamentoService, PagamentoService>();
 
 var app = builder.Build();
 

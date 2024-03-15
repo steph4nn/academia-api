@@ -9,7 +9,7 @@ namespace AcademiaAPI.Models
     {
         public string? Cpf {get;set;}
         public DateTime DataDePagamento {get;set;}
-        public int IdPlano {get;set;}
+        public int? IdPlano {get;set;}
 
         public Pagamento()
         {
