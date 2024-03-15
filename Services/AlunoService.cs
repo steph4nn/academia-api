@@ -37,8 +37,8 @@ namespace AcademiaAPI.Services
         }
         public async Task<Aluno> GetAluno(int id)
         {
-            var alunoList = await _dbService.GetAsync<Aluno>("SELECT * FROM public.aluno where id_aluno=@id", new {id});
-            return alunoList;
+            var aluno = await _dbService.GetAsync<Aluno>("SELECT * FROM public.aluno where id_aluno=@id", new {id});
+            return aluno;
         }
 
         public async Task<Aluno> UpdateAluno(Aluno aluno)

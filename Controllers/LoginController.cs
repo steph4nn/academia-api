@@ -26,7 +26,7 @@ namespace AcademiaAPI.Controllers
     }
         
         [HttpPost]
-        public async Task<IActionResult> Post(Usuario usuario)
+        public async Task<IActionResult> Post([FromBody]Usuario usuario)
         {
             //your logic for login process
             var result = await _usuarioService.GetUsuario();
@@ -43,7 +43,7 @@ namespace AcademiaAPI.Controllers
                     signingCredentials: credentials);
 
                 var token =  new JwtSecurityTokenHandler().WriteToken(Sectoken);
-
+    
                 return Ok(token);
             }
             return BadRequest("Errou dnv");
