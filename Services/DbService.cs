@@ -37,12 +37,11 @@ namespace AcademiaAPI.Services
 
         public async Task<T> GetAsync<T>(string command, object parms)
         {
-        T result;
+            T? result;
 
-        result = (await _db.QueryAsync<T>(command, parms).ConfigureAwait(false)).FirstOrDefault();
+            result = (await _db.QueryAsync<T>(command, parms).ConfigureAwait(false)).FirstOrDefault();
 
-        return result;
-
+            return result;
         }
     }
 }

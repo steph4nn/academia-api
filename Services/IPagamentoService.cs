@@ -8,8 +8,8 @@ namespace AcademiaAPI.Services
 {
     public interface IPagamentoService
     {
-        Task <bool> CreatePagamento(Pagamento pagamento);
-        Task <List<Pagamento>> GetPagamentos();
-        Task <Pagamento>GetPagamentoPorId(int id);
+        Task <bool> CreatePagamento(Pagamentos pagamento);
+        Task <List<Pagamentos>> GetPagamentos();
+        Task <Pagamentos>GetPagamentoPorId(int id);
     }
 }

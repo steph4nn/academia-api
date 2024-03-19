@@ -18,8 +18,8 @@ namespace AcademiaAPI.Models
         public Aluno(string cpf, string nome, DateTime dataVencimento, DateTime dataIngresso)
         {
             Cpf = cpf;
-            DataIngresso = dataIngresso;
-            DataVencimento = dataVencimento;
+            DataIngresso = dataIngresso.Date;
+            DataVencimento = dataVencimento.Date;
             Nome = nome;
         }
     }

@@ -21,7 +21,7 @@ namespace AcademiaAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePagamento ([FromBody]Pagamento pagamento){
+        public async Task<IActionResult> CreatePagamento ([FromBody]Pagamentos pagamento){
             
             var result = await _pagamentoService.CreatePagamento(pagamento);
             return Ok(result);

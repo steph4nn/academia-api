@@ -1,36 +1,48 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AcademiaAPI.Models;
+using Dapper;
+using System.Data;
+using System.Linq;
 
 namespace AcademiaAPI.Services
 {
     public class PagamentoService : IPagamentoService
     {
         private readonly IDbService _dbService;
+
         public PagamentoService(IDbService dbService)
         {
             _dbService = dbService;
         }
-            public async Task<bool> CreatePagamento(Pagamento pagamento)
+
+        public async Task<bool> CreatePagamento(Pagamentos pagamento)
         {            
             var result = await _dbService.EditData(
-                "INSERT INTO public.pagamentos ( aluno_cpf, data_pagamento, planos_id) VALUES (@Cpf, @DataDePagamento, @PlanosId)",
+                "INSERT INTO public.pagamentos (id_pagamento, aluno_cpf, data_pagamento, planos_id) VALUES (@Id, @Cpf, @DataDePagamento, @PlanosId)",
                 pagamento);
             return true;
         }
-
-        public async Task<Pagamento> GetPagamentoPorId(int id)
+        public async Task<List<Pagamentos>> GetPagamentos()
         {
-            var pagamento = await _dbService.GetAsync<Pagamento>("SELECT * FROM public.pagamentos where id_pagamento=@id", new {id});
-            return pagamento;
+            string sql = "SELECT id_pagamento AS Id, aluno_cpf AS Cpf, data_pagamento AS DataDePagamento, planos_id AS planosId FROM public.pagamentos";
+            var pagamentos = await _dbService.GetAll<Pagamentos>(sql, new { } );
+            return (List<Pagamentos>)pagamentos;
         }
-
-        public async Task<List<Pagamento>> GetPagamentos()
+        
+        public async Task<Pagamentos> GetPagamentoPorId(int id)
         {
-            var pagamentoList = await _dbService.GetAll<Pagamento>("SELECT * FROM public.pagamentos", new { });
-            return pagamentoList;
+            string sql = "SELECT id_pagamento AS Id, aluno_cpf AS Cpf, data_pagamento AS DataDePagamento, planos_id AS planosId FROM public.pagamentos where id_pagamento= @id";
+
+            var pagamento = await _dbService.GetAsync<Pagamentos>(sql, new { Id = id});
+            Console.WriteLine(pagamento);
+
+            return pagamento;   
+
         }
+    
     }
 }
