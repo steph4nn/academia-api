@@ -16,37 +16,43 @@ namespace AcademiaAPI.Services
 
         public async Task<bool> CreateAluno(Aluno aluno)
         {
-             var result =
-            await _dbService.EditData(
-                "INSERT INTO public.aluno (cpf, data_vencimento, data_ingresso, nome) VALUES (@cpf, @datavencimento, @dataingresso, @nome)",
-                aluno);
+            string sql = "INSERT INTO public.aluno (cpf, dia_vencimento, data_ingresso, nome, tipo) VALUES (@cpf, @diavencimento, @dataingresso, @nome, @tipo);INSERT INTO public.aluno_endereco(cpf, rua, numero, bairro, cidade, cep, estado)VALUES (@cpf, @rua, @numeroendereco, @bairro, @cidade, @cep, @estado);INSERT INTO public.aluno_contato(cpf,email, numero)VALUES ( @cpf, @emailcontato, @numerocontato); ";
+            
+            var result =
+            await _dbService.EditData(sql, aluno);
         return true;
         }
 
         public async Task<bool> DeleteAluno(int id)
         {
-            var DeleteAluno = await _dbService.EditData("DELETE FROM public.aluno WHERE id_aluno=@id", new { id });
+            string sql ="DELETE FROM public.aluno WHERE id_aluno=@id";
+
+            var DeleteAluno = await _dbService.EditData(sql, new { id });
             return true;
         }
 
 
         public async Task<List<Aluno>> GetAlunosList()
         {
-            var alunoList = await _dbService.GetAll<Aluno>("SELECT * FROM public.aluno", new { });
+            string sql = "SELECT * FROM public.aluno";
+
+            var alunoList = await _dbService.GetAll<Aluno>(sql, new { });
             return alunoList;
         }
         public async Task<Aluno> GetAluno(int id)
         {
-            var aluno = await _dbService.GetAsync<Aluno>("SELECT * FROM public.aluno where id_aluno=@id", new {id});
+            string sql = "SELECT * FROM public.aluno where id_aluno=@id";
+
+            var aluno = await _dbService.GetAsync<Aluno>(sql, new {id});
             return aluno;
         }
 
         public async Task<Aluno> UpdateAluno(Aluno aluno)
         {
+            string sql = "Update public.aluno SET  dia_vencimento=@diavencimento,  nome=@nome WHERE id_aluno=@id";
+
             var updateAluno =
-            await _dbService.EditData(
-                "Update public.aluno SET  data_vencimento=@datavencimento,  nome=@nome WHERE id_aluno=@id",
-                aluno);
+            await _dbService.EditData(sql, aluno);
         return aluno;
         }
     }

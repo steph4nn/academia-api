@@ -28,11 +28,9 @@ namespace AcademiaAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Usuario usuario)
         {
-            //your logic for login process
             var result = await _usuarioService.GetUsuario();
             if (result.Senha == usuario.Senha && result.NomeDeUsuario == usuario.NomeDeUsuario)
             {
-            //If login usrename and password are correct then proceed to generate token
                 var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
                 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 

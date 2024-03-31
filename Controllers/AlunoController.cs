@@ -45,9 +45,16 @@ namespace AcademiaAPI.Controllers
     [HttpPost]
     public async Task<IActionResult> AddAluno([FromBody]Aluno aluno)
     {
-        var result =  await _alunoService.CreateAluno(aluno);
-
-        return Ok(result);
+        try
+        {
+            var result = await _alunoService.CreateAluno(aluno);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            // Log the exception here
+            return StatusCode(500, "Internal server error");
+        }
     }
 
     [HttpPut]

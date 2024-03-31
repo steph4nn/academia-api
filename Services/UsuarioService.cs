@@ -15,7 +15,9 @@ namespace AcademiaAPI.Services
     }
         public async Task<Usuario> GetUsuario()
         {
-            var usuario = await _dbService.GetAsync<Usuario>("SELECT * FROM public.usuario where id_usuario=1",new { });
+            string sql = "SELECT * FROM public.usuario where id_usuario=1";
+            
+            var usuario = await _dbService.GetAsync<Usuario>(sql ,new { });
             return usuario;
         }
     }
