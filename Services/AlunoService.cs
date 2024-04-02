@@ -34,7 +34,7 @@ namespace AcademiaAPI.Services
 
         public async Task<List<Aluno>> GetAlunosList()
         {
-            string sql = "SELECT * FROM public.aluno";
+            string sql = "SELECT * FROM public.AlunosT";
 
             var alunoList = await _dbService.GetAll<Aluno>(sql, new { });
             return alunoList;

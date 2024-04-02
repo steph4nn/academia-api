@@ -52,7 +52,6 @@ namespace AcademiaAPI.Controllers
         }
         catch (Exception ex)
         {
-            // Log the exception here
             return StatusCode(500, "Internal server error");
         }
     }
@@ -67,11 +66,20 @@ namespace AcademiaAPI.Controllers
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAluno(int id)
-    {
-        var result =  await _alunoService.DeleteAluno(id);
-
-        return Ok(result);
-    }
+        {
+            try {
+                if(!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                var result =  await _alunoService.DeleteAluno(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error");
+            }
+        }
 
     }
 }
