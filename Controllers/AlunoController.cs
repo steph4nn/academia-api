@@ -45,15 +45,9 @@ namespace AcademiaAPI.Controllers
     [HttpPost]
     public async Task<IActionResult> AddAluno([FromBody]Aluno aluno)
     {
-        try
-        {
             var result = await _alunoService.CreateAluno(aluno);
             return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Internal server error");
-        }
+        
     }
 
     [HttpPut]
@@ -67,18 +61,9 @@ namespace AcademiaAPI.Controllers
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAluno(int id)
         {
-            try {
-                if(!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
                 var result =  await _alunoService.DeleteAluno(id);
                 return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Internal server error");
-            }
+
         }
 
     }

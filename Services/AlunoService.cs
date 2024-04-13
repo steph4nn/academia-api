@@ -16,7 +16,7 @@ namespace AcademiaAPI.Services
 
         public async Task<bool> CreateAluno(Aluno aluno)
         {
-            string sql = "INSERT INTO public.aluno (cpf, dia_vencimento, data_ingresso, nome, tipo) VALUES (@cpf, @diavencimento, @dataingresso, @nome, @tipo);INSERT INTO public.aluno_endereco(cpf, rua, numero, bairro, cidade, cep, estado)VALUES (@cpf, @rua, @numeroendereco, @bairro, @cidade, @cep, @estado);INSERT INTO public.aluno_contato(cpf,email, numero)VALUES ( @cpf, @emailcontato, @numerocontato); ";
+            string sql = "INSERT INTO public.aluno (cpf, dia_vencimento, data_ingresso, nome, tipo) VALUES (@cpf, @diavencimento, @dataingresso, @nome, @tipo);INSERT INTO public.aluno_endereco(cpf, rua, numero, bairro, cidade, cep, estado)VALUES (@cpf, @rua, @numeroendereco, @bairro, @cidade, @cep, @estado);INSERT INTO public.aluno_contato(cpf,email, numero)VALUES ( @cpf, @email, @numerocontato); ";
             
             var result =
             await _dbService.EditData(sql, aluno);
@@ -34,9 +34,31 @@ namespace AcademiaAPI.Services
 
         public async Task<List<Aluno>> GetAlunosList()
         {
-            string sql = "SELECT * FROM public.AlunosT";
+            string sqlAluno = "SELECT * FROM public.Aluno";
+            string sqlEndereco = "SELECT * FROM public.aluno_endereco";
+            string sqlContato = "SELECT * FROM public.aluno_contato";
 
-            var alunoList = await _dbService.GetAll<Aluno>(sql, new { });
+            var alunoListData = await _dbService.GetAll<Aluno>(sqlAluno, new { });
+            var enderecoListData = await _dbService.GetAll<Endereco>(sqlEndereco, new { });
+            var contatoListData = await _dbService.GetAll<Contato>(sqlContato, new { });
+
+            var alunoList = new List<Aluno>();
+
+            foreach (var alunoData in alunoListData)
+                {
+                    var endereco = enderecoListData.FirstOrDefault(e => e.Cpf == alunoData.Cpf);
+                    var contato = contatoListData.FirstOrDefault(c => c.Cpf == alunoData.Cpf);
+
+                    var aluno = new AlunoBuilder()
+                        .WithCpf(alunoData.Cpf)
+                        .WithNome(alunoData.Nome)
+                        .WithEndereco(endereco)
+                        .WithContato(contato)
+                        .Build();
+
+                    alunoList.Add(aluno);
+                }
+
             return alunoList;
         }
         public async Task<Aluno> GetAluno(int id)

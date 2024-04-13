@@ -26,42 +26,22 @@ namespace AcademiaAPI.Models
         [Required]
         public int Tipo{get;set;}
 
-        [Required]
-        public long NumeroContato {get;set;}
-        
-        [Required]
-        [EmailAddress]
-        public string EmailContato {get;set;}
-
-        public string Rua {get; set;}
-        public  int NumeroEndereco {get; set;}
-        public string Bairro {get; set;}
-        public string Cidade {get; set;}
-        public string Estado {get; set;}
-
-        [MinLength(8)]
-        public string Cep {get; set;}
-
+        public Endereco Endereco {get; set;}
+        public Contato Contato {get; set;}
 
 
         public Aluno()
         {            
         }
-        public Aluno(string cpf, string nome, int diaVencimento, int tipo, DateTime dataIngresso, int numeroContato, string emailContato, string rua, int numero, string bairro, string cidade, string estado, string cep)
+        public Aluno(string cpf, string nome, int diaVencimento, int tipo, DateTime dataIngresso, Endereco endereco, Contato contato)
         {
             Cpf = cpf;
-            DataIngresso = dataIngresso.Date;
-            DiaVencimento = diaVencimento;
             Nome = nome;
+            DiaVencimento = diaVencimento;
             Tipo = tipo;
-            NumeroContato = numeroContato;
-            EmailContato = emailContato;
-            Rua = rua;
-            NumeroEndereco = numero;
-            Bairro = bairro;
-            Cidade = cidade;
-            Estado = estado;
-            Cep = cep;
+            DataIngresso = dataIngresso.Date;
+            Endereco = endereco;
+            Contato = contato;
         }
     }
 }
