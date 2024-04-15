@@ -31,7 +31,7 @@ namespace AcademiaAPI.Models
         
         [Required]
         [EmailAddress]
-        public string EmailContato {get;set;}
+        public string Email {get;set;}
 
         public string Rua {get; set;}
         public  int NumeroEndereco {get; set;}
@@ -55,7 +55,7 @@ namespace AcademiaAPI.Models
             Nome = nome;
             Tipo = tipo;
             NumeroContato = numeroContato;
-            EmailContato = emailContato;
+            Email = emailContato;
             Rua = rua;
             NumeroEndereco = numero;
             Bairro = bairro;
